@@ -1,0 +1,23 @@
+function Three_Link_Plot(z)
+
+% This function is used to plot the three link robot 
+
+% The input to this function z is assumed to be directly from the ode
+% integration function
+
+load('rB_fn.mat');          load('rC_fn.mat');              load('rD_fn.mat');
+
+[m,n] = size(z);
+
+for i = 1:m 
+    
+    state_i = z(:,i);
+    Theta = state_i(1);             Alpha = state_i(2);             Beta = state_i(3);
+    Thetadot = sta
+    
+    
+    
+end
+
+end
+
