@@ -29,5 +29,7 @@ load('h_fn.mat')            %@(Alpha,Beta,Betadot,Theta)
 load('g_alpha_fn.mat')      %@(Alpha,Beta)
 load('g_beta_fn.mat')       %@(Alpha,Beta)
 
-p.h_fn = h_fn;          p.g_alpha_fn = g_alpha_fn;        p.g_beta_fn = g_beta_fn;        
+p.h_fn = f1_fn;          
+p.g1_fn = g1_fn;        
+
 end

@@ -9,7 +9,7 @@ I1 = p.I1;      I2 = p.I2;      I3 = p.I3;      g = 9.81;
 Alpha = [];     Beta = [];      Theta = [];
 
 syms Theta Thetadot Thetaddot Alpha Alphadot Alphaddot Beta Betadot Betaddot real
-syms u_beta FAx FAy FDx FDy real 
+syms u_alpha u_beta FAx FAy FDx FDy real 
 
 i = [ 1 0 0 ]';
 
@@ -65,7 +65,7 @@ LMB = ((FDx + FAx) * i + (FDy + FAy) *j) + (m1 + m2 + m3)*g * (-j) - (m1 * aCOM1
 % AMB
 % AMBtoA
 AMBtoA_lhs = cross(rCOM1, m1 * g * (-j)) + cross(rCOM2, m2 * g * (-j)) +...
-             cross(rCOM3, m3 * g * (-j)) + cross(rD, (FDx * i + FDy * j)) + [0;0;u_beta];
+             cross(rCOM3, m3 * g * (-j)) + cross(rD, (FDx * i + FDy * j)) + [0; 0; u_alpha + u_beta];
 
 AMBtoA_rhs = cross(rCOM1, m1 * aCOM1) + cross(rCOM2, m2 * aCOM2) + cross(rCOM3, m3 * aCOM3) + ...
              I1 * [0;0;Thetaddot] + I2 * [0;0;Theta1ddot] + I3 * [0;0;Theta2ddot] ;
@@ -73,7 +73,7 @@ AMBtoA = simplify(AMBtoA_lhs(3) - AMBtoA_rhs(3));
 
 % AMBtoB
 AMBtoB_lhs = cross(rCOM2 - rB, m2 * g * (-j)) + cross(rCOM3 - rB, m3 * g * (-j)) +...
-             cross(rD - rB, (FDx * i + FDy * j)) + [0;0;u_beta];
+             cross(rD - rB, (FDx * i + FDy * j)) + [0; 0; u_alpha + u_beta];
          
 AMBtoB_rhs = cross(rCOM2 - rB, m2 * aCOM2) + cross(rCOM3 - rB, m3 * aCOM3) + ...
              I2 * [0;0;Theta1ddot] + I3 * [0;0;Theta2ddot];

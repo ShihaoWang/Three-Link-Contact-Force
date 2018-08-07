@@ -7,7 +7,7 @@ I1 = p.I1;      I2 = p.I2;      I3 = p.I3;      g = 9.81;
 
 Alpha = [];     Beta = [];      Theta = [];
 syms Theta Thetadot Thetaddot Alpha Alphadot Alphaddot Beta Betadot Betaddot real
-syms u_beta Wall_x Wall_y lamda_x lamda_y real   % In the post-impact system, there is only one control input
+syms u_alpha u_beta Wall_x Wall_y lamda_x lamda_y real   % In the post-impact system, there is only one control input
 
 i = [ 1 0 0 ]';
 
@@ -62,7 +62,7 @@ L = T - V + lamda_x * (rD(1) - Wall_x) + lamda_y * (rD(2) - Wall_y);
 p_L_p_state = jacobian(L,x)';
 p_L_p_statedot = jacobian(L,xdot)';
 d_p_L_p_statedot_dt = jacobian(p_L_p_statedot,x) * xdot + jacobian(p_L_p_statedot,xdot) * xddot;
-Lag_Eqn = d_p_L_p_statedot_dt - p_L_p_state - [0;0;u_beta];
+Lag_Eqn = d_p_L_p_statedot_dt - p_L_p_state - [0;u_alpha;u_beta];
 
 % Constraint Equations
 
