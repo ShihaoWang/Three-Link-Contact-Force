@@ -9,15 +9,14 @@ Thetadot = z(4);  Alphadot = z(5);  Betadot = z(6);
 K = p.K;   % Derisvative gain
 
 A_fn = p.Post_A_fn;     %@(Alpha,Beta,Theta)
-B_fn = p.Post_B_fn;     %@(Alpha,Alphadot,Beta,Betadot,Theta,Thetadot,u_alpha,u_beta)
+B_fn = p.Post_B_fn;     %@(Alpha,Alphadot,Beta,Betadot,Theta,Thetadot,u_beta)
 
-    
-g1_fn = p.g1_fn;   %@(Alpha,Beta)
-f1_fn = p.f1_fn;   %@(Alpha,Beta,Betadot,Theta)
+g_beta_fn = p.g_beta_fn;   %@(Alpha,Beta)
+f_beta_fn = p.f_beta_fn;   %@(Alpha,Beta,Betadot,Theta)
 
-g1_fn = g1_fn(Alpha,Beta);
-f1_fn = f1_fn(Alpha,Beta,Betadot,Theta);
-u_beta = (-K * Betadot - f1_fn)/g1_fn;
+g_beta = g_beta_fn(Alpha,Beta);
+f_beta = f_beta_fn(Alpha,Beta,Betadot,Theta);
+u_beta = (-K * Betadot - f_beta)/g_beta;
 
 A = A_fn(Alpha,Beta,Theta);
 

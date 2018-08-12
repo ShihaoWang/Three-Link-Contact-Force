@@ -12,10 +12,10 @@ Post_B = load('Post_B_fn.mat'); %@(Alpha,Alphadot,Beta,Betadot,Theta,Thetadot,u_
 p.Post_A_fn = Post_A.A_fn;                 
 p.Post_B_fn = Post_B.B_fn;
 
-load('FAx_Part.mat')  %@(Alpha,Alphadot,Alphaddot,Beta,Betaddot,Theta,Thetadot,Thetaddot,u_alpha, u_beta)
-load('FAy_Part.mat')  %@(Alpha,Alphadot,Alphaddot,Beta,Betaddot,Theta,Thetadot,Thetaddot,u_alpha, u_beta)
-load('FDx_Part.mat')  %@(Alpha,Alphadot,Alphaddot,Beta,Betadot,Betaddot,Theta,Thetadot,Thetaddot,u_alpha, u_beta)
-load('FDy_Part.mat')  %@(Alpha,Alphadot,Alphaddot,Beta,Betadot,Betaddot,Theta,Thetadot,Thetaddot,u_alpha, u_beta)
+load('FAx_Part.mat')  %@(Alpha,Alphadot,Alphaddot,Beta,Betaddot,Theta,Thetadot,Thetaddot,u_beta)
+load('FAy_Part.mat')  %@(Alpha,Alphadot,Alphaddot,Beta,Betaddot,Theta,Thetadot,Thetaddot,u_beta)
+load('FDx_Part.mat')  %@(Alpha,Alphadot,Alphaddot,Beta,Betadot,Betaddot,Theta,Thetadot,Thetaddot,u_beta)
+load('FDy_Part.mat')  %@(Alpha,Alphadot,Alphaddot,Beta,Betadot,Betaddot,Theta,Thetadot,Thetaddot,u_beta)
 
 p.FAx_Part = FAx_Part;         
 p.FAy_Part = FAy_Part;
@@ -25,9 +25,8 @@ p.FDy_Part = FDy_Part;
 load('X_Gene.mat')          %@(Alpha,Beta,Theta)
 p.X_Gene = X_Gene;
 
-load('h_fn.mat')            %@(Alpha,Beta,Betadot,Theta)
-load('g_alpha_fn.mat')      %@(Alpha,Beta)
+load('f_beta_fn.mat')       %@(Alpha,Beta,Betadot,Theta)
 load('g_beta_fn.mat')       %@(Alpha,Beta)
 
-p.h_fn = h_fn;          p.g_alpha_fn = g_alpha_fn;        p.g_beta_fn = g_beta_fn;        
+p.f_beta_fn = f_beta_fn;              p.g_beta_fn = g_beta_fn;        
 end

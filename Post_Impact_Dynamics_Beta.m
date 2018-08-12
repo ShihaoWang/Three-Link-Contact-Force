@@ -124,7 +124,7 @@ T = simplify(subs(T,[Thetadot,Alphadot],[thetadot,alphadot]));
 TwoBetadotX = jacobian(T,Betadot);
 X = simplify(jacobian(TwoBetadotX,Betadot)/2);
 
-Y = simplify(T - Betadot^2 * X)
+Y = simplify(T - Betadot^2 * X);
 
 V = m1 * g * rCOM1(2) + m2 * g * rCOM2(2) + m3 * g * rCOM3(2);
 
@@ -134,8 +134,7 @@ L = T - V + lamda_x * (rD(1) - Wall_x) + lamda_y * (rD(2) - Wall_y);
 Lag_Eqn_theta = simplify(jacobian(L,Theta)); % No Thetadot involved
 
 % Lagrange equation with rDspect to alpha
-Lag_Eqn_alpha = -simplify(jacobian(L,Alpha)) - u_alpha; % No Alphadot involved
-% Lag_Eqn_alpha = simplify(jacobian(L,Alpha)); % No Alphadot involved
+Lag_Eqn_alpha = simplify(jacobian(L,Alpha)); % No Alphadot involved
 
 % Lagrange equation with respect to beta
 p_L_p_state = jacobian(L,Beta);
@@ -154,18 +153,14 @@ EOM = -A\B;
 
 Betaddot = simplify(EOM(1));
 
-g_alpha = jacobian(Betaddot, u_alpha);
 g_beta = jacobian(Betaddot,u_beta);
-h = simplify((Betaddot - g_alpha * u_alpha - g_beta * u_beta)); 
+f_beta = simplify((Betaddot - g_beta * u_beta)); 
 
-
-g_alpha_fn = matlabFunction(g_alpha);  %(Alpha,Beta)
 g_beta_fn = matlabFunction(g_beta);  %(Alpha,Beta)
-h_fn = matlabFunction(h);  %(Alpha,Beta,Betadot,Theta)
+f_beta_fn = matlabFunction(f_beta);  %(Alpha,Beta,Betadot,Theta)
 
-save('g_alpha_fn.mat','g_alpha_fn')
 save('g_beta_fn.mat','g_beta_fn')
-save('h_fn.mat','h_fn')
+save('f_beta_fn.mat','f_beta_fn')
 
 Betaddot = matlabFunction(Betaddot);  % (Alpha,Beta,Betadot,Theta,u_alpha,u_beta)
 
